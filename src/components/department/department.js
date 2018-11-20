@@ -2,7 +2,6 @@ import React from 'react';
 import axios from 'axios';
 import { Link, Route } from 'react-router-dom';
 import DepartmentDetails from './departmentDetails';
-import AddDepartment from '../department/addDepartment'
 
 class Department extends React.Component {
     constructor() {
@@ -34,7 +33,6 @@ class Department extends React.Component {
                        <button onClick={this.handleClick}> edit </button>
                     </li>)
                 )}
-                <Route path={`/departments/:id`} component={DepartmentDetails} />
                 <Link to="/departments/new">Add Department</Link>
             </div>
         )

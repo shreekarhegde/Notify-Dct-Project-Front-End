@@ -11,7 +11,6 @@ class DepartmentDetails extends React.Component {
 
     componentDidMount(){
         axios.get(`http://localhost:3001/departments/${this.props.match.params.id}`).then((response) => {
-            console.log(response.data);
             this.setState({
                 departmentDetails: response.data
             })
