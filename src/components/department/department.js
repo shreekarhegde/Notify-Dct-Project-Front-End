@@ -1,6 +1,8 @@
 import React from 'react';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
+import { Link, Route } from 'react-router-dom';
+import DepartmentDetails from './departmentDetails';
+import AddDepartment from '../department/addDepartment'
 
 class Department extends React.Component {
     constructor() {
@@ -8,6 +10,11 @@ class Department extends React.Component {
         this.state = {
             departments: []
         }
+        this.handleClick = this.handleClick.bind(this);
+    }
+
+    handleClick(){
+        console.log('Hello');
     }
 
     componentDidMount() {
@@ -22,10 +29,13 @@ class Department extends React.Component {
         return (
             <div>
                 {this.state.departments.map((department, index) => (
-                    <li key={index}> 
-                       <Link to={`departments/${department.departmentName}`}>{department.departmentName}</Link>
+                    <li key={index}>
+                       <Link to={`/departments/${department._id}`}>{department.departmentName}</Link>
+                       <button onClick={this.handleClick}> edit </button>
                     </li>)
                 )}
+                <Route path={`/departments/:id`} component={DepartmentDetails} />
+                <Link to="/departments/new">Add Department</Link>
             </div>
         )
     }

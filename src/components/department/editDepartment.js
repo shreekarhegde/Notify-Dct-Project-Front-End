@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 
-class AddDepartment extends React.Component {
+class editDepartment extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -34,7 +34,7 @@ class AddDepartment extends React.Component {
             departmentName: this.state.nameOfTheDepartment,
             about: this.state.aboutTheDepartment
         }
-        axios.post('http://localhost:3001/departments', submitValue).then((response) => {
+        axios.put('http://localhost:3001/departments', submitValue).then((response) => {
             const newDepartment = [...this.state.nameOfTheDepartment, response.data];
             this.setState(prevState => ({
                 nameOfTheDepartment: newDepartment
@@ -62,4 +62,4 @@ class AddDepartment extends React.Component {
     }
 }
 
-export default AddDepartment;
+export default editDepartment;
