@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 class DepartmentDetails extends React.Component {
     constructor(props){
@@ -21,7 +22,9 @@ class DepartmentDetails extends React.Component {
         return (
             <div>
                 {this.state.departmentDetails.departmentName}<br/>
-                {this.state.departmentDetails.about}
+                {this.state.departmentDetails.about} <br/>
+                <Link to="/departments/:id">edit</Link><br/>
+                <Link to="/departments" > back</Link>
             </div>
         )
     }

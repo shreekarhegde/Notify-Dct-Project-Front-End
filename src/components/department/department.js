@@ -2,18 +2,22 @@ import React from 'react';
 import axios from 'axios';
 import { Link, Route } from 'react-router-dom';
 import DepartmentDetails from './departmentDetails';
+import EditDepartment from './editDepartment';
 
 class Department extends React.Component {
     constructor() {
         super();
         this.state = {
-            departments: []
+            departments: [],
+            redirect: false
         }
         this.handleClick = this.handleClick.bind(this);
     }
 
     handleClick(){
-        console.log('Hello');
+        this.setState({
+            redirect: true
+        });
     }
 
     componentDidMount() {
@@ -30,7 +34,6 @@ class Department extends React.Component {
                 {this.state.departments.map((department, index) => (
                     <li key={index}>
                        <Link to={`/departments/${department._id}`}>{department.departmentName}</Link>
-                       <button onClick={this.handleClick}> edit </button>
                     </li>)
                 )}
                 <Link to="/departments/new">Add Department</Link>

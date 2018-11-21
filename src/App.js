@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Link, Switch, Redirect} from "react-rou
 import Department from '../src/components/department/department';
 import AddDepartment from '../src/components/department/addDepartment';
 import DepartmentDetails from '../src/components/department/departmentDetails'
+import EditDepartment from '../src/components/department/editDepartment';
 
 const Index = () => (<h2> Home </h2>);
 
@@ -23,6 +24,7 @@ const AppRouter = () => (
       <Route path="/departments/" component= {Department} exact/>
       <Route path="/departments/new" component={AddDepartment} />
       <Route path="/departments/:id" component={DepartmentDetails} exact/> 
+      <Route path="/departments/:id" component={EditDepartment} exact/>
       {/* {exact takes to next page} */}
     </div>
   </Router>

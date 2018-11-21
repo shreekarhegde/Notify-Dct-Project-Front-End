@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 
-class editDepartment extends React.Component {
+class EditDepartment extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -34,7 +34,7 @@ class editDepartment extends React.Component {
             departmentName: this.state.nameOfTheDepartment,
             about: this.state.aboutTheDepartment
         }
-        axios.put('http://localhost:3001/departments', submitValue).then((response) => {
+        axios.put(`http://localhost:3001/departments/${this.props.match.params.id}`, submitValue).then((response) => {
             const newDepartment = [...this.state.nameOfTheDepartment, response.data];
             this.setState(prevState => ({
                 nameOfTheDepartment: newDepartment
@@ -48,11 +48,11 @@ class editDepartment extends React.Component {
             <div>
                 <form onSubmit={this.handleSubmit}>
                     <label>
-                        Department Name: <br/>
+                        New Name: <br/>
                         <input type="text" name="departmentName" onChange={this.handleChangeText} value={this.state.departmentName}/><br/>
                     </label> 
                     <label>
-                        About:<br/>
+                        Change 'About' here:<br/>
                         <input type="textarea" onChange={this.handleChangeAbout} value={this.state.about}/><br/>
                         <input type="submit" value="submit"/>
                     </label>    
@@ -62,4 +62,4 @@ class editDepartment extends React.Component {
     }
 }
 
-export default editDepartment;
+export default EditDepartment;
