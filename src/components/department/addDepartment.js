@@ -1,6 +1,6 @@
 import React from 'react';
 import axios from 'axios';
-import {Redirect} from 'react-router-dom';
+import {Redirect, Link} from 'react-router-dom';
 
 class AddDepartment extends React.Component {
     constructor(props) {
@@ -69,6 +69,7 @@ class AddDepartment extends React.Component {
                         <input type="submit" value="submit"/>
                     </label>    
                 </form>    
+                <Link to="/departments">back</Link>
             </div>
         )
         

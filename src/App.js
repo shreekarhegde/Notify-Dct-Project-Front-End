@@ -22,9 +22,10 @@ const AppRouter = () => (
       </nav>
       <Route path="/" exact component={Index} />
       <Route path="/departments/" component= {Department} exact/>
-      <Route path="/departments/new" component={AddDepartment} />
-      <Route path="/departments/:id" component={DepartmentDetails} exact/> 
-      <Route path="/departments/:id" component={EditDepartment} exact/>
+      <Switch>
+        <Route path="/departments/new" component={AddDepartment} exact/>
+        <Route path="/departments/:id" component={DepartmentDetails} exact/> 
+      </Switch>
       {/* {exact takes to next page} */}
     </div>
   </Router>

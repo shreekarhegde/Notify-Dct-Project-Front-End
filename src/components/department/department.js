@@ -1,8 +1,6 @@
 import React from 'react';
 import axios from 'axios';
-import { Link, Route } from 'react-router-dom';
-import DepartmentDetails from './departmentDetails';
-import EditDepartment from './editDepartment';
+import { Link } from 'react-router-dom';
 
 class Department extends React.Component {
     constructor() {

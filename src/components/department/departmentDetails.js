@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
+import { Link, Route, Redirect } from 'react-router-dom';
+import EditDepartment from './editDepartment';
 
 class DepartmentDetails extends React.Component {
     constructor(props){
@@ -8,6 +9,7 @@ class DepartmentDetails extends React.Component {
         this.state = {
             departmentDetails: {}
         }
+        this.clickHandle = this.clickHandle.bind(this);
     }
 
     componentDidMount(){
@@ -18,13 +20,22 @@ class DepartmentDetails extends React.Component {
         })
     }
 
+    clickHandle(){
+        console.log('hi');
+        return (
+            // <Route path={`/departments/${this.props.match.params.id}`} component={EditDepartment}/>
+         <Redirect from="/departments/:id" to="/departments/:id" component={EditDepartment} />
+        // <EditDepartment />
+        )
+    }
+
     render() {
         return (
             <div>
                 {this.state.departmentDetails.departmentName}<br/>
                 {this.state.departmentDetails.about} <br/>
-                <Link to="/departments/:id">edit</Link><br/>
-                <Link to="/departments" > back</Link>
+                <Link to={`/departments/${this.props.match.params.id}`} onClick={this.clickHandle}>edit</Link><br/>
+                <Link to="/departments"> back</Link>
             </div>
         )
     }
