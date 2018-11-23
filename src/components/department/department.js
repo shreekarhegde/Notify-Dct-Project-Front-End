@@ -6,16 +6,8 @@ class Department extends React.Component {
     constructor() {
         super();
         this.state = {
-            departments: [],
-            redirect: false
+            departments: []
         }
-        this.handleClick = this.handleClick.bind(this);
-    }
-
-    handleClick(){
-        this.setState({
-            redirect: true
-        });
     }
 
     componentDidMount() {

@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import { Link, Route, Redirect } from 'react-router-dom';
+import Department from '../department/department';
 
 class DepartmentDetails extends React.Component {
     constructor(props){
@@ -9,6 +10,7 @@ class DepartmentDetails extends React.Component {
             departmentDetails: {},
             redirect: false
         }
+        this.deleteHandle = this.deleteHandle.bind(this);
     }
 
     componentDidMount(){
@@ -19,14 +21,27 @@ class DepartmentDetails extends React.Component {
         })
     }
 
+    deleteHandle(){
+        axios.delete(`http://localhost:3001/departments/${this.props.match.params.id}`).then((response) => {
+            console.log(response);
+        });
+        this.setState({
+            redirect: true
+        });    
+    }
+
     render() {
+        const { redirect } = this.state;
+        if(redirect){
+            return <Redirect to="/departments/" exact />
+        }
         return (
             <div>
                 {this.state.departmentDetails.departmentName}<br/>
                 {this.state.departmentDetails.about} <br/>
-                <Link to={`/departments/edit/${this.props.match.params.id}`}
-                >edit</Link><br/>
-                <Link to="/departments"> back</Link>
+                <Link to={`/departments/edit/${this.props.match.params.id}`}>edit</Link><br/>
+                <Link to={`/departments/${this.props.match.params.id}`}  onClick={this.deleteHandle}>Delete</Link><br/>
+                <Link to="/departments">back</Link>
             </div>
         )
     }

@@ -25,7 +25,7 @@ const AppRouter = () => (
       <Switch>
         <Route path="/departments/new" component={AddDepartment} exact/>
         <Route path="/departments/:id" component={DepartmentDetails} exact/> 
-        <Route path="/departments/edit/:id" component={EditDepartment}/>
+        <Route path="/departments/edit/:id" component={EditDepartment} exact/>
       </Switch>
       {/* {exact takes to next page} */}
     </div>
