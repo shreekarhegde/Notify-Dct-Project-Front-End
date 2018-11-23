@@ -1,7 +1,6 @@
 import React from 'react';
 import axios from 'axios';
-import { Link, Route, Redirect } from 'react-router-dom';
-import Department from '../department/department';
+import { Link, Redirect } from 'react-router-dom';
 
 class DepartmentDetails extends React.Component {
     constructor(props){
