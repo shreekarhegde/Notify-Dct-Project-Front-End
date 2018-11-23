@@ -50,7 +50,7 @@ class EditDepartment extends React.Component {
     render() {
         const { redirect } = this.state;
         if(redirect){
-            return <Redirect to="/departments/" exact />
+            return <Redirect from="/departments/edit/:id" to="/departments/" />
         }
         return (
             <div>
