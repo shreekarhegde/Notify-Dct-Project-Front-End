@@ -23,11 +23,11 @@ class DepartmentDetails extends React.Component {
 
     deleteHandle(){
         axios.delete(`http://localhost:3001/departments/${this.props.match.params.id}`).then((response) => {
-            console.log(response);
+             this.setState({
+                redirect: true
+            })
         });
-        this.setState({
-            redirect: true
-        });    
+       ;    
     }
 
     render() {
