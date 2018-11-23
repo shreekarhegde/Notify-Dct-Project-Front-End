@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import { Redirect } from 'react-router-dom';
 
 class EditDepartment extends React.Component {
     constructor(props) {
@@ -39,11 +40,18 @@ class EditDepartment extends React.Component {
             this.setState(prevState => ({
                 nameOfTheDepartment: newDepartment
             }))
+            this.setState({
+                redirect: true
+            });
         })
     }
     
    
     render() {
+        const { redirect } = this.state;
+        if(redirect){
+            return <Redirect to="/departments/" exact />
+        }
         return (
             <div>
                 <form onSubmit={this.handleSubmit}>

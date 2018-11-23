@@ -44,9 +44,7 @@ class AddDepartment extends React.Component {
             this.setState({
                 redirect: true
             });
-        })
-
-       
+        })       
     }
 
    
