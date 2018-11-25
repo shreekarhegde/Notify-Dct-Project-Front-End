@@ -40,7 +40,7 @@ class DepartmentDetails extends React.Component {
         return (
             <div>
                 <h5>name</h5><br/>
-                {this.state.departmentDetails.departmentName}<br/>
+                {this.state.departmentDetails.departmentName}
                 <h5>about</h5>
                 {this.state.departmentDetails.about} <br/>
                 <h5>Members of the department</h5>

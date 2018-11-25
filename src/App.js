@@ -34,7 +34,6 @@ const AppRouter = () => (
         <Route path="/employees/:id" component={EmployeeDetails}  exact/>
         <Route path="/departments/edit/:id" component={EditDepartment}  exact/>  
 
-        {/* <Route path="/departments/edit/:id" render={(details) => <EditDepartment details={DepartmentDetails}/>}/>}  exact/> */}
       </Switch>
       {/* {exact takes to next page} */}
     </div>

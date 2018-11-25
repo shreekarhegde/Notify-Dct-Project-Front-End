@@ -10,6 +10,7 @@ class AddEmployee extends React.Component {
                 lastNameOfEmployee: ``,
                 departmentofEmployee: ``,  
                 bio: '',
+                listOfDepartments: [],
                 redirect: false  
         }
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -18,7 +19,9 @@ class AddEmployee extends React.Component {
         this.handleChangeDepartment = this.handleChangeDepartment.bind(this);
     }
 
-    
+
+        
+
     handleChangeFirstName(event) {
         event.preventDefault();
         this.setState({
@@ -51,7 +54,6 @@ class AddEmployee extends React.Component {
         }
        
         axios.post('http://localhost:3001/employees', submitValue).then((response) => {
-            console.log(response.data);
             this.setState({
                 redirect: true
             });
@@ -75,11 +77,11 @@ class AddEmployee extends React.Component {
                     </label> 
                     <label>
                         Last Name<br/>
-                        <input type="text" name="" onChange={this.handleChangeLastName} value={this.state.lastName}/><br/>
+                        <input type="text" name="lastName" onChange={this.handleChangeLastName} value={this.state.lastName}/><br/>
                     </label>
                     <label>
                          Department<br/>
-                        <input type="text" onChange={this.handleChangeDepartment} value={this.state.department}/><br/>
+                         <input type="text" name="Department" onChange={this.handleChangeDepartment} value={this.state.department}/>
                         <input type="submit" value="submit"/>
                     </label>    
                 </form>    
