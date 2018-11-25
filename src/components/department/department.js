@@ -23,7 +23,7 @@ class Department extends React.Component {
             <div>
                 {this.state.departments.map((department, index) => (
                     <li key={index}>
-                       <Link to={`/departments/${department._id}`}>{department.departmentName}</Link>
+                       <Link to={`/departments/${department._id}`} >{department.departmentName}</Link>
                     </li>)
                 )}
                 <Link to="/departments/new">Add Department</Link>

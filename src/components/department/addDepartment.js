@@ -50,6 +50,7 @@ class AddDepartment extends React.Component {
    
    
     render() {
+        //redirecting to departments page after adding a department
         const { redirect } = this.state;
         if(redirect){
             return <Redirect to="/departments/" exact />

@@ -6,7 +6,7 @@ class DepartmentDetails extends React.Component {
     constructor(props){
         super(props);
         this.state = {
-            departmentDetails: {},
+            departmentDetails: [],
             redirect: false
         }
         this.deleteHandle = this.deleteHandle.bind(this);
@@ -17,6 +17,7 @@ class DepartmentDetails extends React.Component {
             this.setState({
                 departmentDetails: response.data
             })
+            console.log(this.state.departmentDetails);
         })
     }
 
@@ -30,6 +31,7 @@ class DepartmentDetails extends React.Component {
     }
 
     render() {
+        //redirecting to departments page after deleting
         const { redirect } = this.state;
         if(redirect){
             return <Redirect to="/departments/" exact />
@@ -38,8 +40,12 @@ class DepartmentDetails extends React.Component {
             <div>
                 {this.state.departmentDetails.departmentName}<br/>
                 {this.state.departmentDetails.about} <br/>
-                <Link to={`/departments/edit/${this.props.match.params.id}`}>edit</Link><br/>
-                <Link to={`/departments/${this.props.match.params.id}`}  onClick={this.deleteHandle}>Delete</Link><br/>
+                {/* {this.state.departmentDetails.events.map((member) => (
+                    <li>{member}</li>
+                ))} */}
+                {this.state.departmentDetails.members}
+                <Link to={`/departments/edit/${this.props.match.params.id}`}>Edit</Link><br/>
+                <Link to={`/departments/${this.props.match.params.id}`} onClick={this.deleteHandle}>Delete</Link><br/>
                 <Link to="/departments">back</Link>
             </div>
         )

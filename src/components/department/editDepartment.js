@@ -31,7 +31,7 @@ class EditDepartment extends React.Component {
 
     handleSubmit(event){
         event.preventDefault();
-        let submitValue ={
+        let submitValue = {
             departmentName: this.state.nameOfTheDepartment,
             about: this.state.aboutTheDepartment
         }
@@ -48,14 +48,16 @@ class EditDepartment extends React.Component {
     
    
     render() {
+        //this redirect is not working
         const { redirect } = this.state;
         if(redirect){
-            return <Redirect from="/departments/edit/:id" to="/departments/" />
+            return <Redirect to="/departments/" exact />
         }
         return (
             <div>
                 <form onSubmit={this.handleSubmit}>
                     <label>
+                        {console.log(this.props.details)}
                         New Name: <br/>
                         <input type="text" name="departmentName" onChange={this.handleChangeText} value={this.state.departmentName}/><br/>
                     </label> 
