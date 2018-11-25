@@ -57,7 +57,6 @@ class EditDepartment extends React.Component {
             <div>
                 <form onSubmit={this.handleSubmit}>
                     <label>
-                        {console.log(this.props.details)}
                         New Name: <br/>
                         <input type="text" name="departmentName" onChange={this.handleChangeText} value={this.state.departmentName}/><br/>
                     </label> 

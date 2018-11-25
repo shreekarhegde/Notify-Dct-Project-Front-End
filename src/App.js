@@ -30,9 +30,9 @@ const AppRouter = () => (
         <Route path="/departments/new" component={AddDepartment} exact/>
         <Route path="/departments/:id" component={DepartmentDetails}  exact/> 
         <Route path="/employees/:id" component={EmployeeDetails}  exact/>
-        {/* <Route path="/departments/edit/:id" component={EditDepartment}  exact/>   */}
+        <Route path="/departments/edit/:id" component={EditDepartment}  exact/>  
 
-        <Route path="/departments/edit/:id" render={(details) => <EditDepartment details={DepartmentDetails}/>}/>}  exact/>
+        {/* <Route path="/departments/edit/:id" render={(details) => <EditDepartment details={DepartmentDetails}/>}/>}  exact/> */}
       </Switch>
       {/* {exact takes to next page} */}
     </div>
