@@ -43,7 +43,7 @@ class DepartmentDetails extends React.Component {
                 {/* {this.state.departmentDetails.events.map((member) => (
                     <li>{member}</li>
                 ))} */}
-                {this.state.departmentDetails.members}
+                {/* {this.state.departmentDetails.members} */}
                 <Link to={`/departments/edit/${this.props.match.params.id}`}>Edit</Link><br/>
                 <Link to={`/departments/${this.props.match.params.id}`} onClick={this.deleteHandle}>Delete</Link><br/>
                 <Link to="/departments">back</Link>
