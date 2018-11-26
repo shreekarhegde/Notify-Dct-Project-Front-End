@@ -6,7 +6,7 @@ class DepartmentDetails extends React.Component {
     constructor(props){
         super(props);
         this.state = {
-            departmentDetails: this.props.location.state,
+            departmentDetails: this.props.location.state.department,
             redirect: false
         }
         this.deleteHandle = this.deleteHandle.bind(this);
@@ -31,12 +31,12 @@ class DepartmentDetails extends React.Component {
         return (
             <div>
                 <h5>name</h5><br/>
-                {this.state.departmentDetails.departments[0].departmentName}
+                {this.state.departmentDetails.departmentName}
                 <h5>about</h5>
-                {this.state.departmentDetails.departments[0].about} <br/>
+                {this.state.departmentDetails.about} <br/>
                 <h5>Members of the department</h5>
                 {
-                this.state.departmentDetails.departments[0].members.map(function(member, index){
+                this.state.departmentDetails.members.map(function(member, index){
                         return <Link key={index} to={`/employees/${member._id}`}><li key={index}>{member.bio.firstName}</li></Link>
                     })
                 }

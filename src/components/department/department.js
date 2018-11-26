@@ -12,6 +12,7 @@ class Department extends React.Component {
 
     componentDidMount() {
         axios.get('http://localhost:3001/departments').then((response) => {
+            console.log(response.data,"response");
             this.setState({
                 departments: response.data
             })
@@ -23,7 +24,7 @@ class Department extends React.Component {
             <div>
                 {this.state.departments.map((department, index) => (
                     <li key={index}>
-                       <Link to={{pathname:`/departments/${department._id}`, state:{departments: this.state.departments}}} >{department.departmentName}</Link>
+                       <Link to={{pathname:`/departments/${department._id}`, state:{department: department}}} >{department.departmentName}</Link>
                     </li>)
                 )}
                 <Link to="/departments/new">Add Department</Link>

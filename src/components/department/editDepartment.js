@@ -36,10 +36,6 @@ class EditDepartment extends React.Component {
             about: this.state.aboutTheDepartment
         }
         axios.put(`http://localhost:3001/departments/${this.props.match.params.id}`, submitValue).then((response) => {
-            const newDepartment = [...this.state.nameOfTheDepartment, response.data];
-            this.setState(prevState => ({
-                nameOfTheDepartment: newDepartment
-            }))
             this.setState({
                 redirect: true
             });
@@ -58,7 +54,7 @@ class EditDepartment extends React.Component {
                 <form onSubmit={this.handleSubmit}>
                     <label>
                         New Name: <br/>
-                        <input type="text" name="departmentName" onChange={this.handleChangeText} value={this.state.departmentName}/><br/>
+                        <input type="text" name="name" onChange={this.handleChangeText} value={this.state.departmentName}/><br/>
                     </label> 
                     <label>
                         Change 'About' here:<br/>
