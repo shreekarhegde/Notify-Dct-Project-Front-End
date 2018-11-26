@@ -33,8 +33,8 @@ const AppRouter = () => (
         <Route path="/departments/:id" component={DepartmentDetails}  exact/> 
         <Route path="/employees/:id" component={EmployeeDetails}  exact/>
         <Route path="/departments/edit/:id" component={EditDepartment}  exact/>  
-
       </Switch>
+
       {/* {exact takes to next page} */}
     </div>
   </Router>

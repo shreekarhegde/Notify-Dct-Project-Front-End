@@ -10,12 +10,12 @@ class EditDepartment extends React.Component {
             aboutTheDepartment: ``
         }
         this.handleSubmit = this.handleSubmit.bind(this);
-        this.handleChangeText = this.handleChangeText.bind(this);
+        this.handleChangeName = this.handleChangeName.bind(this);
         this.handleChangeAbout = this.handleChangeAbout.bind(this);
     }
 
     
-    handleChangeText(event) {
+    handleChangeName(event) {
         event.preventDefault();
         this.setState({
             nameOfTheDepartment: event.target.value
@@ -52,9 +52,10 @@ class EditDepartment extends React.Component {
         return (
             <div>
                 <form onSubmit={this.handleSubmit}>
+                {/* {console.log(this.props.location.state.departments.department)} */}
                     <label>
                         New Name: <br/>
-                        <input type="text" name="name" onChange={this.handleChangeText} value={this.state.departmentName}/><br/>
+                        <input type="text" onChange={this.handleChangeName} value={this.state.nameOfTheDepartment}/><br/>
                     </label> 
                     <label>
                         Change 'About' here:<br/>

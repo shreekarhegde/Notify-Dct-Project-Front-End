@@ -6,7 +6,7 @@ class DepartmentDetails extends React.Component {
     constructor(props){
         super(props);
         this.state = {
-            departmentDetails: this.props.location.state.department,
+            departmentDetails: this.props.location.state,
             redirect: false
         }
         this.deleteHandle = this.deleteHandle.bind(this);
@@ -31,18 +31,18 @@ class DepartmentDetails extends React.Component {
         return (
             <div>
                 <h5>name</h5><br/>
-                {this.state.departmentDetails.departmentName}
+                <p>{this.state.departmentDetails.department.departmentName}</p>
                 <h5>about</h5>
-                {this.state.departmentDetails.about} <br/>
+                {this.state.departmentDetails.department.about} <br/>
                 <h5>Members of the department</h5>
                 {
-                this.state.departmentDetails.members.map(function(member, index){
+                this.state.departmentDetails.department.members.map(function(member, index){
                         return <Link key={index} to={`/employees/${member._id}`}><li key={index}>{member.bio.firstName}</li></Link>
                     })
                 }
                 
-               
-                <Link to={{pathname:`/departments/${this.props.match.params.id}`, state:{departments: this.state.departmentDetails}}} >Edit</Link>                
+                <Link to={{pathname:`/departments/edit/${this.props.match.params.id}`, state:{departments: this.state.departmentDetails}}}>Edit</Link><br/>  
+
                 <Link to={`/departments/${this.props.match.params.id}`} onClick={this.deleteHandle}>Delete</Link><br/>
                 <Link to="/departments">back</Link>
             </div>
