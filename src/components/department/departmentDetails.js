@@ -42,7 +42,7 @@ class DepartmentDetails extends React.Component {
                 }
                 
                
-                <Link to={`/departments/edit/${this.props.match.params.id}`}>Edit</Link><br/>
+                <Link to={{pathname:`/departments/${this.props.match.params.id}`, state:{departments: this.state.departmentDetails}}} >Edit</Link>                
                 <Link to={`/departments/${this.props.match.params.id}`} onClick={this.deleteHandle}>Delete</Link><br/>
                 <Link to="/departments">back</Link>
             </div>
