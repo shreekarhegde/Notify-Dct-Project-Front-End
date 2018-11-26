@@ -6,22 +6,13 @@ class DepartmentDetails extends React.Component {
     constructor(props){
         super(props);
         this.state = {
-            departmentDetails: {
-                members: []
-            },
+            departmentDetails: this.props.location.state,
             redirect: false
         }
         this.deleteHandle = this.deleteHandle.bind(this);
     }
 
-    componentDidMount(){
-        axios.get(`http://localhost:3001/departments/${this.props.match.params.id}`).then((response) => {
-            this.setState({
-                departmentDetails: response.data
-            })
-        })
-    }
-
+    
     deleteHandle(){
         axios.delete(`http://localhost:3001/departments/${this.props.match.params.id}`).then((response) => {
              this.setState({
@@ -40,12 +31,12 @@ class DepartmentDetails extends React.Component {
         return (
             <div>
                 <h5>name</h5><br/>
-                {this.state.departmentDetails.departmentName}
+                {this.state.departmentDetails.departments[0].departmentName}
                 <h5>about</h5>
-                {this.state.departmentDetails.about} <br/>
+                {this.state.departmentDetails.departments[0].about} <br/>
                 <h5>Members of the department</h5>
                 {
-                this.state.departmentDetails.members.map(function(member, index){
+                this.state.departmentDetails.departments[0].members.map(function(member, index){
                         return <Link key={index} to={`/employees/${member._id}`}><li key={index}>{member.bio.firstName}</li></Link>
                     })
                 }
