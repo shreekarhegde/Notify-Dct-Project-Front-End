@@ -12,7 +12,6 @@ class Department extends React.Component {
 
     componentDidMount() {
         axios.get('http://localhost:3001/departments').then((response) => {
-            console.log(response.data,"response");
             this.setState({
                 departments: response.data
             })
