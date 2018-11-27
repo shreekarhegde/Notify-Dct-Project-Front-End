@@ -6,8 +6,8 @@ class EditDepartment extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            nameOfTheDepartment: ``,
-            aboutTheDepartment: ``
+            nameOfTheDepartment: this.props.location.state.departments.department.departmentName,
+            aboutTheDepartment: this.props.location.state.departments.department.about
         }
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleChangeName = this.handleChangeName.bind(this);
@@ -44,6 +44,7 @@ class EditDepartment extends React.Component {
     
    
     render() {
+        {console.log(this.props.location.state.departments.department.about)}
         //this redirect is not working
         const { redirect } = this.state;
         if(redirect){
@@ -59,7 +60,7 @@ class EditDepartment extends React.Component {
                     </label> 
                     <label>
                         Change 'About' here:<br/>
-                        <input type="textarea" onChange={this.handleChangeAbout} value={this.state.about}/><br/>
+                        <input type="textarea" onChange={this.handleChangeAbout} value={this.state.aboutTheDepartment}/><br/>
                         <input type="submit" value="submit"/>
                     </label>    
                 </form>    
