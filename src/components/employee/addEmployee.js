@@ -10,17 +10,14 @@ class AddEmployee extends React.Component {
                 lastNameOfEmployee: ``,
                 departmentofEmployee: ``,  
                 bio: '',
-                listOfDepartments: [],
-                redirect: false  
+                redirect: false,
+                departments: this.props.location.state.departments
         }
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleChangeFirstName = this.handleChangeFirstName.bind(this);
         this.handleChangeLastName = this.handleChangeLastName.bind(this);
         this.handleChangeDepartment = this.handleChangeDepartment.bind(this);
     }
-
-
-        
 
     handleChangeFirstName(event) {
         event.preventDefault();
@@ -30,7 +27,6 @@ class AddEmployee extends React.Component {
     }
 
     handleChangeDepartment(event) {
-        event.preventDefault();
         this.setState({
             departmentofEmployee: event.target.value
         })
@@ -52,7 +48,6 @@ class AddEmployee extends React.Component {
                 department: this.state.departmentofEmployee
             }
         }
-       
         axios.post('http://localhost:3001/employees', submitValue).then((response) => {
             this.setState({
                 redirect: true
@@ -60,8 +55,6 @@ class AddEmployee extends React.Component {
         })       
     }
 
-   
-   
     render() {
         //redirecting to employees page after adding a department
         const { redirect } = this.state;
@@ -80,10 +73,15 @@ class AddEmployee extends React.Component {
                         <input type="text" name="lastName" onChange={this.handleChangeLastName} value={this.state.lastName}/><br/>
                     </label>
                     <label>
-                         Department<br/>
-                         <input type="text" name="Department" onChange={this.handleChangeDepartment} value={this.state.department}/>
+                        <div>
+                            <select onChange={this.handleChangeDepartment}>{
+                                this.state.departments.map((department, index) => {
+                                    return <option key={index} value={department._id}>{department.departmentName}</option>
+                                })
+                            }</select>
+                        </div>
                         <input type="submit" value="submit"/>
-                    </label>    
+                    </label>
                 </form>    
                 <Link to="/employees">back</Link>
             </div>

@@ -6,15 +6,19 @@ class Employee extends React.Component {
     constructor() {
         super();
         this.state = {
-            employees: []
+            employees: [],
+            departments: []
         }
     }
 
     componentDidMount() {
-        axios.get('http://localhost:3001/employees').then((response) => {
-            this.setState({
-                employees: response.data
-            })
+        axios.get('http://localhost:3001/employees').then((responseFromEmployees) => {
+            axios.get('http://localhost:3001/departments').then((responseFromDepartments) => {
+                this.setState({
+                    employees: responseFromEmployees.data,
+                    departments: responseFromDepartments.data
+                })
+            }) 
         })
     }
 
@@ -26,7 +30,7 @@ class Employee extends React.Component {
                        <Link to={`/employees/${employee._id}`}>{employee.bio.firstName}</Link>
                     </li>)
                 )}
-                <Link to="/employees/new">Add employee</Link>
+                <Link to={{pathname:"/employees/new", state:{departments: this.state.departments}}}>Add employee</Link>
             </div>
         )
     }
