@@ -24,10 +24,10 @@ class Employee extends React.Component {
 
     render() {
         return (
-            <div>
+            <div>{console.log(this.state.employees, "emp")}
                 {this.state.employees.map((employee, index) => (
                     <li key={index}>
-                       <Link to={`/employees/${employee._id}`}>{employee.bio.firstName}</Link>
+                       <Link to={{pathname:`/employees/${employee._id}`, state: {details: employee}}}>{employee.bio.firstName}</Link>
                     </li>)
                 )}
                 <Link to={{pathname:"/employees/new", state:{departments: this.state.departments}}}>Add employee</Link>

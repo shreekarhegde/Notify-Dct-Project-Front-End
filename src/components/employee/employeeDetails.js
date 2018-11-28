@@ -6,18 +6,10 @@ class EmployeeDetails extends React.Component {
     constructor(props){
         super(props);
         this.state = {
-            employeeDetails: {},
+            employeeDetails: this.props.location.state.details,
             redirect: false
         }
         this.deleteHandle = this.deleteHandle.bind(this);
-    }
-
-    componentDidMount(){
-        axios.get(`http://localhost:3001/employees/${this.props.match.params.id}`).then((response) => {
-            this.setState({
-                employeeDetails: response.data
-            })
-        })
     }
 
     deleteHandle(){
@@ -35,15 +27,28 @@ class EmployeeDetails extends React.Component {
         if(redirect){
             return <Redirect to="/employees/" exact />
         }
-        return (
-            <div>
-                {this.state.employeeDetails.department}<br/>
-                {this.state.employeeDetails.employee} <br/>
-                <Link to={`/employees/edit/${this.props.match.params.id}`}>Edit</Link><br/>
-                <Link to={`/employees/${this.props.match.params.id}`} onClick={this.deleteHandle}>Delete</Link><br/>
-                <Link to="/employees">back</Link>
-            </div>
-        )
+        if(this.state.employeeDetails.bio.department === undefined){
+            return (
+                <div>{console.log(this.props.location.state.details,"values")}
+                {console.log(this.state.employeeDetails)}
+                    {this.state.employeeDetails.bio.firstName} <br/>
+                    <Link to={`/employees/edit/${this.props.match.params.id}`}>Edit</Link><br/>
+                    <Link to={`/employees/${this.props.match.params.id}`} onClick={this.deleteHandle}>Delete</Link><br/>
+                    <Link to="/employees">back</Link>
+                </div>
+            ) 
+        }else{
+            return (
+                <div>{console.log(this.props.location.state.details,"values")}
+                {console.log(this.state.employeeDetails)}
+                    {this.state.employeeDetails.bio.department.departmentName}<br/>
+                    {this.state.employeeDetails.bio.firstName} <br/>
+                    <Link to={`/employees/edit/${this.props.match.params.id}`}>Edit</Link><br/>
+                    <Link to={`/employees/${this.props.match.params.id}`} onClick={this.deleteHandle}>Delete</Link><br/>
+                    <Link to="/employees">back</Link>
+                </div>
+            ) 
+        }       
     }
 }
 

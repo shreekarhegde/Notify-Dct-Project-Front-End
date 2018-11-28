@@ -37,7 +37,7 @@ class DepartmentDetails extends React.Component {
                 <h5>Members of the department</h5>
                 {
                 this.state.departmentDetails.department.members.map(function(member, index){
-                        return <Link key={index} to={`/employees/${member._id}`}><li key={index}>{member.bio.firstName}</li></Link>
+                        return <p key={index} to={`/employees/${member._id}`}><li key={index}>{member.bio.firstName}</li></p>
                     })
                 }
                 
