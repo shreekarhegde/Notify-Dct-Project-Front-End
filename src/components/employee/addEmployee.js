@@ -6,15 +6,15 @@ class AddEmployee extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-                firstNameOfEmployee: ``,
-                firstNameError: ``,
-                lastNameOfEmployee: ``,
-                lastNameError: ``,
-                departmentofEmployee: ``,
-                departmentError: ``,  
-                bio: '',
-                redirect: false,
-                departments: this.props.location.state.departments,
+            firstNameOfEmployee: ``,
+            firstNameError: ``,
+            lastNameOfEmployee: ``,
+            lastNameError: ``,
+            departmentofEmployee: ``,
+            departmentError: ``,  
+            bio: '',
+            redirect: false,
+            departments: this.props.location.state.departments,
         }
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleChangeFirstName = this.handleChangeFirstName.bind(this);
