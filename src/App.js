@@ -7,6 +7,7 @@ import EditDepartment from '../src/components/department/editDepartment';
 import Employee from './components/employee/employee';
 import EmployeeDetails from './components/employee/employeeDetails';
 import AddEmployee from './components/employee/addEmployee';
+import EditEmployeeDetails from './components/employee/editEmployee';
 
 const Index = () => (<h2> Home </h2>);
 
@@ -21,18 +22,19 @@ const AppRouter = () => (
           <li>
           <Link to="/departments/"> Departments </Link>
           <Link to="/employees/"> Employees </Link>
-          </li>
+          </li>          
         </ul>
       </nav>
       <Route path="/" exact component={Index} />
-      <Route path="/departments/" component= {Department} exact/>
+      <Route path="/departments/" component= {Department} exact/><br/>
       <Route path="/employees/" component= {Employee} exact/>
-      <Route path="/employees/new" component= {AddEmployee} exact/>
       <Switch>
         <Route path="/departments/new" component={AddDepartment} exact/>
         <Route path="/departments/:id" component={DepartmentDetails}  exact/> 
-        <Route path="/employees/:id" component={EmployeeDetails}  exact/>
         <Route path="/departments/edit/:id" component={EditDepartment}  exact/>  
+        <Route path="/employees/new" component= {AddEmployee} exact/>
+        <Route path="/employees/:id" component={EmployeeDetails}  exact/>
+        <Route path="/employees/edit/:id" component={EditEmployeeDetails} exact/>
       </Switch>
 
       {/* {exact takes to next page} */}

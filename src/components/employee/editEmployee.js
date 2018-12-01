@@ -2,16 +2,15 @@ import React from 'react';
 import axios from 'axios';
 import {Redirect, Link} from 'react-router-dom';
 
-class AddEmployee extends React.Component {
+class EditEmployeeDetails extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-                firstNameOfEmployee: ``,
-                lastNameOfEmployee: ``,
-                departmentofEmployee: ``,  
-                bio: '',
+                firstNameOfEmployee: this.props.location.state.employeeDetails.bio.firstName,
+                lastNameOfEmployee: this.props.location.state.employeeDetails.bio.lastName,
+                departmentofEmployee: this.props.location.state.employeeDetails.bio.department,  
                 redirect: false,
-                departments: this.props.location.state.departments,
+                departments: this.props.location.state.departments
         }
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleChangeFirstName = this.handleChangeFirstName.bind(this);
@@ -45,10 +44,12 @@ class AddEmployee extends React.Component {
             bio: {
                 firstName: this.state.firstNameOfEmployee,
                 lastName: this.state.lastNameOfEmployee,
-                department: this.state.departmentofEmployee
+                department: this.state.departmentofEmployee,
+                previousDepartment: this.props.location.state.employeeDetails.bio.department
             }
         }
-        axios.post('http://localhost:3001/employees', submitValue).then((response) => {
+        console.log(submitValue, 'submit value from edit');
+        axios.put(`http://localhost:3001/employees/${this.props.match.params.id}`, submitValue).then((response) => {
             this.setState({
                 redirect: true
             });
@@ -64,17 +65,17 @@ class AddEmployee extends React.Component {
         return (
             <div>
                 <form onSubmit={this.handleSubmit}>
-                    <label>
+                    <label>{console.log(this.props.location.state.employeeDetails.bio, "location")}
                         First Name: <br/>
-                        <input type="text" name="FirstName" onChange={this.handleChangeFirstName} value={this.state.firstName}/><br/>
-                    </label><span id="nameError" value="name"></span> 
+                        <input type="text" name="FirstName" onChange={this.handleChangeFirstName} value={this.state.firstNameOfEmployee}/><br/>
+                    </label> 
                     <label>
                         Last Name<br/>
-                        <input type="text" name="lastName" onChange={this.handleChangeLastName} value={this.state.lastName}/><br/>
+                        <input type="text" name="lastName" onChange={this.handleChangeLastName} value={this.state.lastNameOfEmployee}/><br/>
                     </label>
                     <label>
                         <div>
-                            <select onClick={this.handleChangeDepartment}>{
+                            <select onChange={this.handleChangeDepartment}>{
                                 this.state.departments.map((department, index) => {
                                     return <option key={index} value={department._id}>{department.departmentName}</option>
                                 })
@@ -90,4 +91,4 @@ class AddEmployee extends React.Component {
     }
 }
 
-export default AddEmployee;
+export default EditEmployeeDetails;

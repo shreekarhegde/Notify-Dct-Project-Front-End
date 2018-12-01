@@ -7,6 +7,7 @@ class EmployeeDetails extends React.Component {
         super(props);
         this.state = {
             employeeDetails: this.props.location.state.details,
+            departments: this.props.location.state.departments,
             redirect: false
         }
         this.deleteHandle = this.deleteHandle.bind(this);
@@ -27,28 +28,33 @@ class EmployeeDetails extends React.Component {
         if(redirect){
             return <Redirect to="/employees/" exact />
         }
-        if(this.state.employeeDetails.bio.department === undefined){
+
+        if(this.state.employeeDetails.bio.department == undefined){
             return (
-                <div>{console.log(this.props.location.state.details,"values")}
-                {console.log(this.state.employeeDetails)}
-                    {this.state.employeeDetails.bio.firstName} <br/>
-                    <Link to={`/employees/edit/${this.props.match.params.id}`}>Edit</Link><br/>
+                <div>
+                    {this.state.employeeDetails.bio.firstName} <br/><br/>
+
+                    <Link to={{pathname:`/employees/edit/${this.props.match.params.id}`, state:{employeeDetails: this.state.employeeDetails, departments: this.state.departments}}}>Edit</Link><br/><br/>
+
                     <Link to={`/employees/${this.props.match.params.id}`} onClick={this.deleteHandle}>Delete</Link><br/>
+                
                     <Link to="/employees">back</Link>
                 </div>
-            ) 
-        }else{
+            )  
+        }
             return (
-                <div>{console.log(this.props.location.state.details,"values")}
-                {console.log(this.state.employeeDetails)}
+                <div>
                     {this.state.employeeDetails.bio.department.departmentName}<br/>
-                    {this.state.employeeDetails.bio.firstName} <br/>
-                    <Link to={`/employees/edit/${this.props.match.params.id}`}>Edit</Link><br/>
+                    {this.state.employeeDetails.bio.firstName} <br/><br/>
+
+                    <Link to={{pathname:`/employees/edit/${this.props.match.params.id}`, state:{employeeDetails: this.state.employeeDetails, departments: this.state.departments}}}>Edit</Link><br/><br/>
+
                     <Link to={`/employees/${this.props.match.params.id}`} onClick={this.deleteHandle}>Delete</Link><br/>
+                
                     <Link to="/employees">back</Link>
                 </div>
             ) 
-        }       
+        // }       
     }
 }
 
