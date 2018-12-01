@@ -109,7 +109,7 @@ class AddEmployee extends React.Component {
                 <form onSubmit={this.handleSubmit}>
                     <label>
                         First Name: <br/>
-                        <input type="text" errortext={this.state.firstNameError} name="FirstName" onChange={this.handleChangeFirstName} value={this.state.firstNameOfEmployee}/><br/>
+                        <input type="text" name="FirstName" onChange={this.handleChangeFirstName} value={this.state.firstNameOfEmployee}/><br/>
                     </label><span>{this.state.firstNameError}</span> 
                     <label>
                         Last Name<br/>
