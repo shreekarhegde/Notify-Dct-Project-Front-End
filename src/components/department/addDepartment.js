@@ -59,12 +59,13 @@ class AddDepartment extends React.Component {
     handleSubmit(event){
         event.preventDefault();
         const err = this.validate();
+        console.log(err,"err");
         if(!err){
             this.setState({
                 nameError: ``,
                 aboutError: ``
             })
-            let submitValue ={
+            let submitValue = {
                 departmentName: this.state.nameOfTheDepartment,
                 about: this.state.aboutTheDepartment
             }

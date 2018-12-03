@@ -71,19 +71,19 @@ class EditDepartment extends React.Component {
                 nameError: ``,
                 aboutError: ``
             })
-        let submitValue = {
-            departmentName: this.state.nameOfTheDepartment,
-            about: this.state.aboutTheDepartment,
-            selectedMembers: this.state.selectedMembers,
-            id: this.props.location.state.departments.department._id
+            let submitValue = {
+                departmentName: this.state.nameOfTheDepartment,
+                about: this.state.aboutTheDepartment,
+                selectedMembers: this.state.selectedMembers,
+                id: this.props.location.state.departments.department._id
+            }
+            console.log(submitValue);
+            axios.put(`http://localhost:3001/departments/${this.props.match.params.id}`, submitValue).then(           (response) => {
+                this.setState({
+                    redirect: true
+                });
+            })
         }
-        console.log(submitValue);
-        axios.put(`http://localhost:3001/departments/${this.props.match.params.id}`, submitValue).then((response) => {
-            this.setState({
-                redirect: true
-            });
-        })
-}
     }
     
    
