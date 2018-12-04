@@ -216,12 +216,14 @@ class EditActivity extends React.Component {
                         })}
                     </div> }   
                     </label><span>{this.state.participantsError}</span>
-                    <label>Remove department: <br/>
-                    {<div>
-                        {this.state.department.departmentName}
+                    {/* <label>Remove department: <br/>
+                    {<div>{console.log(this.props.location.state.activityDetails, "Department")}
+                        {this.state.department.map((department, index) => {
+                            return <div key={index}><input key={index} onClick={this.handleDepartment} type="checkbox" value={department._id}/>{department.departmentName}</div>
+                        })}
                     </div>}
 
-                    </label>
+                    </label> */}
                     <input type="submit" value="submit"></input>
                 </form>
             </div>

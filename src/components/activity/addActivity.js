@@ -12,7 +12,7 @@ class AddActivity extends React.Component {
             aboutError:   ``,
             participants: [],
             participantsError: ``,
-            department: [],
+            departments: this.props.location.state.departments,
             departmentError: ``,
             time: ``,
             timeError: ``,
@@ -21,7 +21,8 @@ class AddActivity extends React.Component {
             date: ``,
             dateError: ``,
             guests: [],
-            employees: [],
+            selectedDepartments: [],
+            employees: this.props.location.state.employees,
             redirect: false,
         }
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -131,11 +132,7 @@ class AddActivity extends React.Component {
         this.state.participants.push(event.target.value)
     }
     handleDepartment(event){
-        event.preventDefault();
-        console.log(event.target.value, "from department");
-        this.setState({
-            department: event.target.value
-        })
+        this.state.selectedDepartments.push(event.target.value);
     }
     handleGuests(event){
         event.preventDefault();
@@ -163,13 +160,14 @@ class AddActivity extends React.Component {
             let submitValue = {
                 activityName: this.state.activityTitle,
                 participants: this.state.participants,
-                guest: this.state.guests,
+                guests: this.state.guests,
                 schedule: {
                     time: this.state.time,
                     date: this.state.date
                 },
                 venue: this.state.venue,
-                about: this.state.aboutActivity
+                about: this.state.aboutActivity,
+                departments: this.state.selectedDepartments 
             }
             console.log(submitValue, "submit value");
             axios.post(`http://localhost:3001/activities`, submitValue).then((response) => {
@@ -210,10 +208,16 @@ class AddActivity extends React.Component {
                     <label>Add participants: <br/> 
                     { <div>
                         {this.state.employees.map((employee, index) => {
-                            return <div key={index}><input key={index} onClick={this.handleParticipants} type="checkbox" value={employee._id}/>{employee.firstName}</div>
+                            return <div key={index}><input key={index} onClick={this.handleParticipants} type="checkbox" value={employee._id}/>{employee.bio.firstName}</div>
                         })}
                     </div> }   
                     </label><span>{this.state.participantsError}</span>
+                    <label>Add departments:
+                        {this.state.departments.map((department, index) => {
+                            return <div key={index}><input key={index} onClick={this.handleDepartment}
+                            type="checkbox" value={department._id}/>{department.departmentName}</div>
+                        })}
+                    </label>
                     <input type="submit" value="submit"></input>
                 </form>
             </div>

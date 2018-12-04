@@ -28,7 +28,7 @@ class Activity extends React.Component {
         axios.get(`http://localhost:3001/departments`).then((responseFromDepartments) => {
             console.log(responseFromDepartments.data, "departments");
             this.setState({
-                employees: responseFromDepartments.data
+                departments: responseFromDepartments.data
             })
         })
     }
@@ -41,6 +41,9 @@ class Activity extends React.Component {
                         <Link to={{pathname:`/activities/${activity._id}`, state: {activity: activity, employees: this.state.employees, departments: this.state.departments}}}>{activity.activityName}</Link>
                    </li> 
                ))}
+
+                <Link to={{pathname:"/activities/new",state: {employees: this.state.employees, departments: this.state.departments}}}>Create New Activity</Link>
+
            </div>
        )
    }
