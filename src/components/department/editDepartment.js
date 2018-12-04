@@ -107,7 +107,7 @@ class EditDepartment extends React.Component {
                     <label><br/><span>{this.state.aboutError}</span> <br/>
                         remove members <br/>
                         {this.state.membersOfTheDepartment.map((member, index) => {
-                            return <div key={index}><input onChange={this.handleChange} key={index} type="checkbox" value={member._id}/>{member.bio.firstName}</div>
+                            return <div key={index}><input onClick={this.handleChange} key={index} type="checkbox" value={member._id}/>{member.bio.firstName}</div>
                         })}
                     </label><br/><br/>   
                     <input type="submit" value="submit"/> 

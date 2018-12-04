@@ -19,7 +19,6 @@ class EmployeeDetails extends React.Component {
                 redirect: true
             })
         });
-       ;    
     }
 
     render() {

@@ -9,7 +9,9 @@ import EmployeeDetails from './components/employee/employeeDetails';
 import AddEmployee from './components/employee/addEmployee';
 import EditEmployeeDetails from './components/employee/editEmployee';
 import AddActivity from './components/activity/addActivity';
+import ActivityDetails from './components/activity/activityDetails';
 import Activity from './components/activity/activity';
+import EditActivity from './components/activity/editActivity';
 
 const Index = () => (<h2> Home </h2>);
 
@@ -36,10 +38,12 @@ const AppRouter = () => (
         <Route path="/departments/new" component={AddDepartment} exact/>
         <Route path="/departments/:id" component={DepartmentDetails}  exact/> 
         <Route path="/departments/edit/:id" component={EditDepartment}  exact/>  
-        <Route path="/employees/new" component= {AddEmployee} exact/>
+        <Route path="/employees/new" component={AddEmployee} exact/>
         <Route path="/employees/:id" component={EmployeeDetails}  exact/>
         <Route path="/employees/edit/:id" component={EditEmployeeDetails} exact/>
         <Route path="/activities/new" component={AddActivity} exact />
+        <Route path="/activities/:id" component={ActivityDetails} exact />
+        <Route path="/activities/edit/:id" component={EditActivity} exact />
       </Switch>
 
       {/* {exact takes to next page} */}
