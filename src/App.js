@@ -9,6 +9,7 @@ import EmployeeDetails from './components/employee/employeeDetails';
 import AddEmployee from './components/employee/addEmployee';
 import EditEmployeeDetails from './components/employee/editEmployee';
 import AddActivity from './components/activity/addActivity';
+import Activity from './components/activity/activity';
 
 const Index = () => (<h2> Home </h2>);
 
@@ -20,16 +21,17 @@ const AppRouter = () => (
           <li>
           <Link to="/"> Home </Link>
           </li>
-          <li>
-          <Link to="/departments/"> Departments </Link>
-          <Link to="/employees/"> Employees </Link>
-          <Link to="/activities"> Activities </Link>
-          </li>          
+          <ul>
+            <li><Link to="/departments/"> Departments </Link></li>
+            <li><Link to="/employees/"> Employees </Link></li>
+            <li><Link to="/activities"> Activities </Link></li>
+          </ul>        
         </ul>
       </nav>
       <Route path="/" exact component={Index} />
+      <Route path="/activities/" component={Activity} exact/><br/>
       <Route path="/departments/" component= {Department} exact/><br/>
-      <Route path="/employees/" component= {Employee} exact/>
+      <Route path="/employees/" component= {Employee} exact/><br/>
       <Switch>
         <Route path="/departments/new" component={AddDepartment} exact/>
         <Route path="/departments/:id" component={DepartmentDetails}  exact/> 
