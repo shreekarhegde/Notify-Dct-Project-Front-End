@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import { Link, Redirect } from 'react-router-dom';
+import strftime from 'strftime'
 
 class ActivityDetails extends React.Component {
         constructor(props){
@@ -9,7 +10,8 @@ class ActivityDetails extends React.Component {
                 activityDetails: this.props.location.state.activity,
                 employees: this.props.location.state.employees,
                 departments: this.props.location.state.departments,
-                redirect: false
+                redirect: false,
+                changedDate: ``
             }
             this.deleteHandle = this.deleteHandle.bind(this);
         }    
@@ -23,18 +25,24 @@ class ActivityDetails extends React.Component {
             })
         }
 
+        componentDidMount(){
+            let date = new Date(this.state.activityDetails.schedule.date);
+            this.setState({
+                changedDate: strftime(`%B %d %Y`, date)
+            })
+        }
+
         render() {
             const {redirect} = this.state;
             if(redirect){
                 return <Redirect to="/activities" exact/>
             }
-
             return (
                 <div>{console.log(this.props.location.state, "from state")}
                     <h1>{this.state.activityDetails.activityName}</h1>
                     <p>{this.state.activityDetails.about}</p>
                     <b>on</b>
-                    <h5>{this.state.activityDetails.schedule.date}</h5>
+                    <h5>{this.state.changedDate}</h5>
                     <b>at</b>
                     <h5>{this.state.activityDetails.schedule.time}</h5>
                     <b>venue</b>
@@ -55,6 +63,7 @@ class ActivityDetails extends React.Component {
             )
         }
 }
+
 
 export default ActivityDetails;
 
