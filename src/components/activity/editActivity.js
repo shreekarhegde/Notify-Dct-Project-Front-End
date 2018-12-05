@@ -12,7 +12,7 @@ class EditActivity extends React.Component {
             aboutError:   ``,
             participants: this.props.location.state.activityDetails.participants,
             participantsError: ``,
-            department: this.props.location.state.activityDetails.department,
+            departments: this.props.location.state.activityDetails.departments,
             departmentError: ``,
             time: this.props.location.state.activityDetails.schedule.time,
             timeError: ``,
@@ -23,7 +23,8 @@ class EditActivity extends React.Component {
             guests: this.props.location.state.activityDetails.guests,
             employees: [],
             redirect: false,
-            participantsToBeRemoved: []
+            participantsToBeRemoved: [],
+            departmentsToBeRemoved: []
         }
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleActivityTitle = this.handleActivityTitle.bind(this);
@@ -132,18 +133,10 @@ class EditActivity extends React.Component {
         this.state.participantsToBeRemoved.push(event.target.value)
     }
     handleDepartment(event){
-        event.preventDefault();
-        console.log(event.target.value, "from department");
-        this.setState({
-            department: event.target.value
-        })
+            this.state.departmentsToBeRemoved.push(event.target.value);
     }
     handleGuests(event){
-        event.preventDefault();
-        console.log(event.target.value, "from guests")
-        this.setState({
-            guests: event.target.value
-        })
+        this.state.guests.push(event.target.value)
     }
 
     handleSubmit(event){
@@ -164,14 +157,14 @@ class EditActivity extends React.Component {
             let submitValue = {
                 activityName: this.state.activityTitle,
                 participantsToBeRemoved: this.state.participantsToBeRemoved,
-                guest: this.state.guests,
+                guests: this.state.guests,
                 schedule: {
                     time: this.state.time,
                     date: this.state.date
                 },
                 venue: this.state.venue,
                 about: this.state.aboutActivity,
-                department: this.state.department
+                departmentsToBeRemoved: this.state.departmentsToBeRemoved
             }
             console.log(submitValue, "submit value");
             axios.put(`http://localhost:3001/activities/${this.props.match.params.id}`, submitValue).then((response) => {
@@ -189,7 +182,7 @@ class EditActivity extends React.Component {
             return <Redirect to="/activities/" exact />
         }
         return(
-            <div>{console.log(this.props.location.state.activityDetails.schedule.time, "time")}
+            <div>{console.log(this.props.location.state.activityDetails.departments, "departments")}
                 <form onSubmit={this.handleSubmit}>
                     <label>Title:<br/>
                         <input type="text" errortext={this.state.titleError} name="title" onChange={this.handleActivityTitle} value={this.state.activityTitle} /><br/>
@@ -216,14 +209,14 @@ class EditActivity extends React.Component {
                         })}
                     </div> }   
                     </label><span>{this.state.participantsError}</span>
-                    {/* <label>Remove department: <br/>
+                    <label>Remove department: <br/>
                     {<div>{console.log(this.props.location.state.activityDetails, "Department")}
-                        {this.state.department.map((department, index) => {
+                        {this.state.departments.map((department, index) => {
                             return <div key={index}><input key={index} onClick={this.handleDepartment} type="checkbox" value={department._id}/>{department.departmentName}</div>
                         })}
                     </div>}
 
-                    </label> */}
+                    </label>
                     <input type="submit" value="submit"></input>
                 </form>
             </div>

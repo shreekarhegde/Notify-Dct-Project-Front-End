@@ -38,7 +38,7 @@ class ActivityDetails extends React.Component {
                 return <Redirect to="/activities" exact/>
             }
             return (
-                <div>{console.log(this.props.location.state, "from state")}
+                <div>{console.log(this.props.location.state.activity.guests, "viewing guests from details")}
                     <h1>{this.state.activityDetails.activityName}</h1>
                     <p>{this.state.activityDetails.about}</p>
                     <b>on</b>
