@@ -40,6 +40,10 @@ class DepartmentDetails extends React.Component {
                         return <p key={index} to={`/employees/${member._id}`}><li key={index}>{member.bio.firstName}</li></p>
                     })
                 }
+                <b>events</b>{console.log(this.state.departmentDetails.department, "details")}
+                {this.state.departmentDetails.department.activities.map((activity, index) => {
+                    return <Link to="/activities"><li key={index}>{activity.activityName}</li></Link>
+                })}
                 
                 <Link to={{pathname:`/departments/edit/${this.props.match.params.id}`, state:{departments: this.state.departmentDetails}}}>Edit</Link><br/>  
 

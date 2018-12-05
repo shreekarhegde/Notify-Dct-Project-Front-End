@@ -48,7 +48,7 @@ class EmployeeDetails extends React.Component {
                     {this.state.employeeDetails.bio.firstName} <br/><br/>
                     <b>Activities</b>
                     { this.state.employeeDetails.activities.map((activity, index) => {
-                        return <Link to="/activities"><li key={index}>{activity.activityName}</li></Link>
+                        return <Link key={index} to="/activities"><li key={index}>{activity.activityName}</li></Link>
                     })}<br/>
 
                     <Link to={{pathname:`/employees/edit/${this.props.match.params.id}`, state:{employeeDetails: this.state.employeeDetails, departments: this.state.departments}}}>Edit</Link><br/><br/>
