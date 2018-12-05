@@ -10,11 +10,13 @@ class AddDepartment extends React.Component {
             nameError: ``,
             aboutTheDepartment: ``,
             aboutError: ``,
-            redirect: false
+            members: this.props.location.state.employees,
+            redirect: false,
         }
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleChangeText = this.handleChangeText.bind(this);
         this.handleChangeAbout = this.handleChangeAbout.bind(this);
+        this.handleAddMembers = this.handleAddMembers.bind(this);
     }
 
     validate = () => {
@@ -56,6 +58,10 @@ class AddDepartment extends React.Component {
         })
     }
 
+    handleAddMembers(event) {
+        this.state.membersToBeAdded.push(event.target.value);
+    }
+
     handleSubmit(event){
         event.preventDefault();
         const err = this.validate();
@@ -95,8 +101,8 @@ class AddDepartment extends React.Component {
                     <label>
                         About:<br/>
                         <input type="textarea" errortext={this.state.aboutError} onChange={this.handleChangeAbout} value={this.state.about}/><br/>
-                        <input type="submit" value="submit"/><br/>
-                    </label><span>{this.state.aboutError}</span>     
+                    </label><span>{this.state.aboutError}</span> 
+                    <input type="submit" value="submit"/><br/>
                 </form>    
                 <Link to="/departments">back</Link>
             </div>

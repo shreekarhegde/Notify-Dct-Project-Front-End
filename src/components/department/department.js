@@ -6,14 +6,22 @@ class Department extends React.Component {
     constructor() {
         super();
         this.state = {
-            departments: []
+            departments: [],
+            employees: []
         }
     }
 
     componentDidMount() {
-        axios.get('http://localhost:3001/departments').then((response) => {
+        axios.get('http://localhost:3001/departments').then((responseFromDepartments) => {
+            console.log(responseFromDepartments, "departments");
             this.setState({
-                departments: response.data
+                departments: responseFromDepartments.data
+            })
+        })
+        axios.get('http://localhost:3001/employees').then((responseFromEmployees) => {
+            console.log(responseFromEmployees, "employees");
+            this.setState({
+                employees: responseFromEmployees.data
             })
         })
     }
@@ -26,7 +34,7 @@ class Department extends React.Component {
                        <Link to={{pathname:`/departments/${department._id}`, state:{department: department}}} >{department.departmentName}</Link>
                     </li>)
                 )}
-                <Link to="/departments/new">Add Department</Link>
+                <Link to={{pathname:"/departments/new", state: {employees: this.state.employees}}}>Add Department</Link>
             </div>
         )
     }
