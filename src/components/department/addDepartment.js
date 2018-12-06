@@ -1,6 +1,8 @@
 import React from 'react';
 import axios from 'axios';
 import {Redirect, Link} from 'react-router-dom';
+import { Button, Form, FormGroup, Label, Input, FormText, Alert } from 'reactstrap';
+
 
 class AddDepartment extends React.Component {
     constructor(props) {
@@ -86,19 +88,22 @@ class AddDepartment extends React.Component {
             return <Redirect to="/departments/" exact />
         }
         return (
-            <div>
-                <form onSubmit={this.handleSubmit}>
-                    <label>
-                        Department Name: <br/>
-                        <input type="text" errortext={this.state.nameError} name="departmentName" onChange={this.handleChangeText} value={this.state.departmentName}/><br/>
-                    </label><span>{this.state.nameError}</span><br/> 
-                    <label>
-                        About:<br/>
-                        <input type="textarea" errortext={this.state.aboutError} onChange={this.handleChangeAbout} value={this.state.about}/><br/>
-                        <input type="submit" value="submit"/><br/>
-                    </label><span>{this.state.aboutError}</span>     
-                </form>    
-                <Link to="/departments">back</Link>
+            <div className="row justify-content-md-center"> 
+                <Form onSubmit={this.handleSubmit}>
+                    <FormGroup>
+                        <Label for="name">Department Name</Label>
+                        <Input type="text" errortext={this.state.nameError} id="name" name="name" onChange={this.handleChangeText} value={this.state.departmentName}/><br/>
+                    </FormGroup>
+                    {this.state.nameError?<Alert color="primary">{this.state.nameError}</Alert>: ``}
+                    <FormGroup>
+                    <Label for="about">About</Label>     
+                        <Input type="textarea" errortext={this.state.aboutError} onChange={this.handleChangeAbout} value={this.state.about}/><br/>
+                    </FormGroup> 
+                    {this.state.aboutError?<Alert color="primary">{this.state.aboutError}</Alert>: ``}
+
+                    <Button type="submit" color="primary" value="submit">submit</Button><br/><br/>
+                    <Link to="/departments">back</Link>
+                </Form> 
             </div>
         )
         

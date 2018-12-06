@@ -12,24 +12,21 @@ import AddActivity from './components/activity/addActivity';
 import ActivityDetails from './components/activity/activityDetails';
 import Activity from './components/activity/activity';
 import EditActivity from './components/activity/editActivity';
+import { Navbar } from 'reactstrap';
 
 const Index = () => (<h2> Home </h2>);
 
 const AppRouter = () => (
   <Router>
-    <div>
-      <nav>
-        <ul>
-          <li>
-          <Link to="/"> Home </Link>
-          </li>
-          <ul>
-            <li><Link to="/departments/"> Departments </Link></li>
-            <li><Link to="/employees/"> Employees </Link></li>
-            <li><Link to="/activities"> Activities </Link></li>
-          </ul>        
-        </ul>
-      </nav>
+    <div className="container">
+     <Navbar>
+          <Link to="/">Home</Link>
+          <Link to="/departments/"> Departments</Link>
+          <Link to="/employees/"> Employees </Link>
+          <Link to="/activities"> Activities </Link>    
+     </Navbar>
+       
+     
       <Route path="/" exact component={Index} />
       <Route path="/activities/" component={Activity} exact/><br/>
       <Route path="/departments/" component= {Department} exact/><br/>
