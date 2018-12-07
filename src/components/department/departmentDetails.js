@@ -3,44 +3,63 @@ import axios from 'axios';
 import { Link, Redirect } from 'react-router-dom';
 import { Badge, Alert, Card, CardText, Button, Input, Form, FormGroup} from 'reactstrap';
 
+class ApplauseButton extends React.Component {
+    constructor(props){
+        super(props);
+       this.state = {
+           applause: props.button.applause,
+           isButtonClicked: false,
+           applauseText: `applause`
+       }
+       this.handleOnClick = this.handleOnClick.bind(this);
+    }
+
+    handleOnClick() {
+        this.setState(prevState => ({
+            isButtonClicked: true,
+            applauseText: `Applauded`,
+            applause: prevState.applause + 1
+        })) 
+    }
+
+    render(){
+        return (<div>
+        <Button onClick={this.handleOnClick} className="col-3" color="white" disabled={this.state.isButtonClicked}>
+            {this.state.applauseText} - {this.state.applause}
+        </Button><br/>
+        </div>
+        )
+    }
+}
+
 class DepartmentDetails extends React.Component {
     constructor(props){
         super(props);
         this.state = {
             departmentDetails: this.props.location.state,
             posts: [],
-            applause: 0,
             comments: [],
             redirect: false,
-            buttonClicked: false,
             postId: ``,
-            applauseText: `Applause`,
         }
         this.deleteHandle = this.deleteHandle.bind(this);
-        this.handleOnClick = this.handleOnClick.bind(this);
         this.handleSubmitComment = this.handleSubmitComment.bind(this);
     }
 
-    handleOnClick() {
-        this.setState(prevState => ({
-            applause: prevState.applause + 1,
-            buttonClicked: true,
-            applauseText: `Applauded`
-        })) 
-    }
 
     handleSubmitComment(event){
         event.preventDefault();
         this.state.postId = event.target[1].value;
-        console.log(this.state.postId, "postId");
-        this.state.comments.push(event.target[0].value);
+        if(event.target[0].value !== null &&  event.target[0].value !== ``){
+            this.state.comments.push(event.target[0].value);
+        }
         let applause = {
             applause: this.state.applause,
             comments: this.state.comments
         };
 
         axios.put(`http://localhost:3001/posts/${this.state.postId}`, applause).then((responseFromButton) => {
-            // console.log(responseFromButton);
+             console.log(responseFromButton.data, "data");
         })    
     }
 
@@ -85,9 +104,9 @@ class DepartmentDetails extends React.Component {
                    return (<div key={index}>
                        <Card body key={index}>
                             <CardText className="row-justify-content-md-center">{post.body}</CardText><br/><br/>
-                            <Button onClick={this.handleOnClick} className="col-3" color="white" disabled={this.state.buttonClicked}>
-                            {this.state.applauseText} - {this.state.applause}
-                            </Button><br/>
+
+                            <ApplauseButton button={post}/><br/>
+
                             <Form onSubmit={this.handleSubmitComment}><b> {post.comments.length} - Comments</b> 
                                 <FormGroup>
                                     <Input placeholder="Add a comment" type="textarea"/>
@@ -100,8 +119,7 @@ class DepartmentDetails extends React.Component {
                                 <Alert key={index}><p >{comment}</p></Alert>)
                             })}
                         </Card>
-                   </div>)
-                            
+                   </div>)        
                 })}
 
                 {/* <b>events</b>
