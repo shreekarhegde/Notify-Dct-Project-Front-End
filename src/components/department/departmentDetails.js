@@ -3,18 +3,18 @@ import axios from 'axios';
 import { Link, Redirect } from 'react-router-dom';
 import { Badge, Alert, Card, CardText, Button, Input, Form, FormGroup} from 'reactstrap';
 
-
 class DepartmentDetails extends React.Component {
     constructor(props){
         super(props);
         this.state = {
             departmentDetails: this.props.location.state,
             posts: [],
+            applause: 0,
+            comments: [],
             redirect: false,
             buttonClicked: false,
-            comments: [],
             postId: ``,
-            applauseText: `Applause`
+            applauseText: `Applause`,
         }
         this.deleteHandle = this.deleteHandle.bind(this);
         this.handleOnClick = this.handleOnClick.bind(this);
@@ -31,12 +31,14 @@ class DepartmentDetails extends React.Component {
 
     handleSubmitComment(event){
         event.preventDefault();
+        this.state.postId = event.target[1].value;
+        console.log(this.state.postId, "postId");
         this.state.comments.push(event.target[0].value);
         let applause = {
             applause: this.state.applause,
             comments: this.state.comments
         };
-        console.log(applause, "applause");
+
         axios.put(`http://localhost:3001/posts/${this.state.postId}`, applause).then((responseFromButton) => {
             // console.log(responseFromButton);
         })    
@@ -45,15 +47,10 @@ class DepartmentDetails extends React.Component {
     componentDidMount(){
         axios.get(`http://localhost:3001/departments/posts/${this.props.match.params.id}`).then(
             (postsFromDepartments) => {
-                postsFromDepartments.data.map((post,index) => {
-                    this.setState({
-                        postId: post._id,
-                        applause: post.applause
-                    })
+                console.log(postsFromDepartments.data, "posts")
+                this.setState({
+                    posts: postsFromDepartments.data
                 })
-            this.setState({
-                posts: postsFromDepartments.data
-            })
         })
     }
 
@@ -84,22 +81,30 @@ class DepartmentDetails extends React.Component {
 
                  <br/>
 
-                {this.state.posts.map((post, index) =>{
-                   return <Card body key={index}>
-                                <CardText className="row-justify-content-md-center">{post.body}</CardText>
-                                <Button onClick={this.handleOnClick} className="col-3" color="white" disabled=       {this.state.buttonClicked}>
-                                    {this.state.applauseText} - {this.state.applause}
-                                </Button><br/>
-                                <Form onSubmit={this.handleSubmitComment}> Comments- {this.state.comments.length}
+                {this.state.posts.map((post, index) => {
+                   return (<div key={index}>
+                       <Card body key={index}>
+                            <CardText className="row-justify-content-md-center">{post.body}</CardText><br/><br/>
+                            <Button onClick={this.handleOnClick} className="col-3" color="white" disabled={this.state.buttonClicked}>
+                            {this.state.applauseText} - {this.state.applause}
+                            </Button><br/>
+                            <Form onSubmit={this.handleSubmitComment}><b> {post.comments.length} - Comments</b> 
                                 <FormGroup>
                                     <Input placeholder="Add a comment" type="textarea"/>
                                 </FormGroup>
-                                <Button type="submit" value="comment" color="primary">Comment</Button>
-                                </Form>
-                            </Card>
+                                <Button value={post._id} type="submit" color="primary">Comment</Button>
+                            </Form><br/>
+                            
+                            {post.comments.map((comment, index) => {
+                                return (
+                                <Alert key={index}><p >{comment}</p></Alert>)
+                            })}
+                        </Card>
+                   </div>)
+                            
                 })}
 
-                <b>events</b>
+                {/* <b>events</b>
                 {this.state.departmentDetails.department.activities.map((activity, index) => {
                     return <Link to="/activities"><li key={index}>{activity.activityName}</li></Link>
                 })}
@@ -110,7 +115,7 @@ class DepartmentDetails extends React.Component {
                 this.state.departmentDetails.department.members.map(function(member, index){
                         return <p key={index}><li key={index}>{member.bio.firstName}</li></p>
                     })
-                }
+                } */}
 
                 <Link to={{pathname:`/departments/edit/${this.props.match.params.id}`, state:{departments: this.state.departmentDetails, posts: this.state.posts}}}>Edit</Link><br/>  
 

@@ -22,11 +22,6 @@ class Department extends React.Component {
     render() {
         return (
             <div>
-                {/* {this.state.departments.map((department, index) => (
-                    <li key={index}>
-                       <Link to={{pathname:`/departments/${department._id}`, state:{department: department}}} >{department.departmentName}</Link>
-                    </li>)
-                )} */}
                 {this.state.departments.map((department, index) => {
                      return (<Row key={index} className="row justify-content-md-center">
                      <Col sm="6">
