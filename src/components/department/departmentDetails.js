@@ -3,6 +3,7 @@ import axios from 'axios';
 import { Link, Redirect } from 'react-router-dom';
 import { Badge, Alert, Card, CardText, Button, Input, Form, FormGroup, Row, Col} from 'reactstrap';
 import  ApplauseButton from '../applauseButton';
+import AddPost from '../addPost';
 
 class DepartmentDetails extends React.Component {
     constructor(props){
@@ -82,7 +83,7 @@ class DepartmentDetails extends React.Component {
                 </Alert>
 
                  <br/>
-
+                 <AddPost departmentId={this.props.match.params.id} />
                 {this.state.posts.map((post, index) => {
                    return (<div key={index}>
                        <Card body key={index}>
@@ -108,7 +109,7 @@ class DepartmentDetails extends React.Component {
                     <Col>
                         <Badge color="primary"><h6>events</h6></Badge>
                             {this.state.departmentDetails.department.activities.map((activity, index) => {
-                                return <Link to="/activities"><li key={index}>{activity.activityName}</li></Link>
+                                return <Link key={index} to="/activities"><li key={index}>{activity.activityName}</li></Link>
                             })}
                         <Badge color="primary"><h6>members of the department</h6></Badge>
                             {
