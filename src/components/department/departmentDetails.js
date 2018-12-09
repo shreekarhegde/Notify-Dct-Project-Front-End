@@ -18,12 +18,12 @@ class DepartmentDetails extends React.Component {
         this.handleSubmitComment = this.handleSubmitComment.bind(this);
     }
 
-
+    
     handleSubmitComment(event){
         event.preventDefault();
         this.state.postId = event.target[1].value;
         if(event.target[0].value !== null &&  event.target[0].value !== ``){
-            this.state.comments.push(event.target[0].value);
+            this.state.comments = event.target[0].value;
         }
         let applause = {
             applause: this.state.applause,
@@ -31,14 +31,22 @@ class DepartmentDetails extends React.Component {
         };
 
         axios.put(`http://localhost:3001/posts/${this.state.postId}`, applause).then((responseFromButton) => {
-             console.log(responseFromButton.data, "data");
-        })    
+            axios.get(`http://localhost:3001/departments/posts/${this.props.match.params.id}`).then(
+                (postsFromDepartments) => {
+                    this.setState({
+                        posts: []
+                    })
+                   this.setState({
+                       posts: postsFromDepartments.data
+                   })
+            })
+        }) 
     }
+
 
     componentDidMount(){
         axios.get(`http://localhost:3001/departments/posts/${this.props.match.params.id}`).then(
             (postsFromDepartments) => {
-                console.log(postsFromDepartments.data, "posts")
                 this.setState({
                     posts: postsFromDepartments.data
                 })
@@ -95,22 +103,23 @@ class DepartmentDetails extends React.Component {
                             })}
                         </Card>
                    </div>)        
-                })}
+                })}<br/>
                     </Col>
                     <Col>
-                        <Badge color="primary"><h4>events</h4></Badge>
+                        <Badge color="primary"><h6>events</h6></Badge>
                             {this.state.departmentDetails.department.activities.map((activity, index) => {
                                 return <Link to="/activities"><li key={index}>{activity.activityName}</li></Link>
                             })}
+                        <Badge color="primary"><h6>members of the department</h6></Badge>
+                            {
+                            this.state.departmentDetails.department.members.map(function(member, index){
+                                    return <p key={index}><li key={index}>{member.bio.firstName}</li></p>
+                                })
+                            }
                     </Col>
                 </Row>
                 
-                <h5>Members of the department</h5>
-                {
-                this.state.departmentDetails.department.members.map(function(member, index){
-                        return <p key={index}><li key={index}>{member.bio.firstName}</li></p>
-                    })
-                }
+               
 
                 <Link to={{pathname:`/departments/edit/${this.props.match.params.id}`, state:{departments: this.state.departmentDetails, posts: this.state.posts}}}>Edit</Link><br/>  
 
