@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import { Link, Redirect } from 'react-router-dom';
-import { Badge, Alert, Card, CardText, Button, Input, Form, FormGroup} from 'reactstrap';
+import { Badge, Alert, Card, CardText, Button, Input, Form, FormGroup, Row, Col} from 'reactstrap';
 import  ApplauseButton from '../applauseButton';
 
 class DepartmentDetails extends React.Component {
@@ -64,8 +64,11 @@ class DepartmentDetails extends React.Component {
                 <h1 className="row justify-content-md-center">
                 <Badge color="primary">
                     {this.state.departmentDetails.department.departmentName}
-                </Badge></h1><br/>
-
+                </Badge>
+                </h1>
+                <br/>
+                <Row>
+                <Col className="col-md-9">
                 <Alert className="row justify-content-md-center" color="primary">
                     {this.state.departmentDetails.department.about}
                 </Alert>
@@ -93,19 +96,21 @@ class DepartmentDetails extends React.Component {
                         </Card>
                    </div>)        
                 })}
-
-                {/* <b>events</b>
-                {this.state.departmentDetails.department.activities.map((activity, index) => {
-                    return <Link to="/activities"><li key={index}>{activity.activityName}</li></Link>
-                })}
-
-
+                    </Col>
+                    <Col>
+                        <Badge color="primary"><h4>events</h4></Badge>
+                            {this.state.departmentDetails.department.activities.map((activity, index) => {
+                                return <Link to="/activities"><li key={index}>{activity.activityName}</li></Link>
+                            })}
+                    </Col>
+                </Row>
+                
                 <h5>Members of the department</h5>
                 {
                 this.state.departmentDetails.department.members.map(function(member, index){
                         return <p key={index}><li key={index}>{member.bio.firstName}</li></p>
                     })
-                } */}
+                }
 
                 <Link to={{pathname:`/departments/edit/${this.props.match.params.id}`, state:{departments: this.state.departmentDetails, posts: this.state.posts}}}>Edit</Link><br/>  
 
