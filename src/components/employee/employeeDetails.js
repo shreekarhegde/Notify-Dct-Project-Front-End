@@ -13,6 +13,7 @@ class EmployeeDetails extends React.Component {
         this.deleteHandle = this.deleteHandle.bind(this);
     }
 
+
     deleteHandle(){
         axios.delete(`http://localhost:3001/employees/${this.props.match.params.id}`).then((response) => {
              this.setState({
@@ -20,6 +21,7 @@ class EmployeeDetails extends React.Component {
             })
         });
     }
+
 
     render() {
         //redirecting to departments page after deleting

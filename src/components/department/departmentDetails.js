@@ -14,9 +14,11 @@ class DepartmentDetails extends React.Component {
             comments: [],
             redirect: false,
             postId: ``,
+            body: ``
         }
         this.deleteHandle = this.deleteHandle.bind(this);
         this.handleSubmitComment = this.handleSubmitComment.bind(this);
+        this.handleAddPost = this.handleAddPost.bind(this)
     }
 
     
@@ -30,7 +32,6 @@ class DepartmentDetails extends React.Component {
             applause: this.state.applause,
             comments: this.state.comments
         };
-
         axios.put(`http://localhost:3001/posts/${this.state.postId}`, applause).then((responseFromButton) => {
             axios.get(`http://localhost:3001/departments/posts/${this.props.match.params.id}`).then(
                 (postsFromDepartments) => {
@@ -48,8 +49,9 @@ class DepartmentDetails extends React.Component {
     componentDidMount(){
         axios.get(`http://localhost:3001/departments/posts/${this.props.match.params.id}`).then(
             (postsFromDepartments) => {
+                console.log(postsFromDepartments, "dep posts");
                 this.setState({
-                    posts: postsFromDepartments.data
+                    posts: postsFromDepartments.data,
                 })
         })
     }
@@ -61,6 +63,13 @@ class DepartmentDetails extends React.Component {
             })
         }); 
     }
+
+        handleAddPost(post) {
+            console.log(post, "post")
+            this.setState({
+                body: post.body
+            })
+        }
 
     render() {
         //redirecting to departments page after deleting
@@ -83,9 +92,10 @@ class DepartmentDetails extends React.Component {
                 </Alert>
 
                  <br/>
-                 <AddPost departmentId={this.props.match.params.id} />
+                 <AddPost departmentId={this.props.match.params.id} addPost={this.handleAddPost}/>
                 {this.state.posts.map((post, index) => {
-                   return (<div key={index}>
+                   return (
+                   <div key={index}>
                        <Card body key={index}>
                             <CardText className="row-justify-content-md-center">{post.body}</CardText><br/><br/>
 

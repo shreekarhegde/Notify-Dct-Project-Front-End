@@ -22,7 +22,7 @@ class AddPost extends React.Component {
     }
 
     handleSubmit(event){
-        console.log(event.target.value);
+        // console.log(event.target.value);
         event.preventDefault();
         let submitValue = {
             body: this.state.post,
@@ -30,7 +30,8 @@ class AddPost extends React.Component {
         }
         console.log(submitValue, "value");
         axios.post('http://localhost:3001/posts', submitValue).then((res) => {
-            
+            console.log(res.data);
+            this.props.addPost(res.data);
         })
     }
    
