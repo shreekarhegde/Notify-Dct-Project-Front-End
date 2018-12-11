@@ -64,11 +64,11 @@ class DepartmentDetails extends React.Component {
         }); 
     }
 
-        handleAddPost(post) {
-            console.log(post, "post")
-            this.setState({
-                body: post.body
-            })
+        handleAddPost(posts) {
+            console.log(posts, "post")
+                this.setState({
+                    posts: posts  
+                })
         }
 
     render() {
