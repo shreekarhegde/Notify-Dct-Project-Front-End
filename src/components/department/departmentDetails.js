@@ -1,9 +1,10 @@
 import React from 'react';
 import axios from 'axios';
 import { Link, Redirect } from 'react-router-dom';
-import { Badge, Alert, Card, CardText, Button, Input, Form, FormGroup, Row, Col} from 'reactstrap';
+import { Badge, Alert, Card, CardText, Button, Input, Form, FormGroup, Row, Col, Label} from 'reactstrap';
 import  ApplauseButton from '../applauseButton';
 import AddPost from '../addPost';
+import './departmentDetails.css'
 
 class DepartmentDetails extends React.Component {
     constructor(props){
@@ -90,12 +91,12 @@ class DepartmentDetails extends React.Component {
                 <Alert className="row justify-content-md-center" color="primary">
                     {this.state.departmentDetails.department.about}
                 </Alert>
-
                  <br/>
                  <AddPost departmentId={this.props.match.params.id} addPost={this.handleAddPost}/>
+                 <Label className="scroller" >
                 {this.state.posts.map((post, index) => {
                    return (
-                   <div key={index}>
+                   <div backgroundcolor="secondary" key={index}>
                        <Card body key={index}>
                             <CardText className="row-justify-content-md-center">{post.body}</CardText><br/><br/>
 
@@ -108,25 +109,27 @@ class DepartmentDetails extends React.Component {
                                 <Button value={post._id} type="submit" color="primary">Comment</Button>
                             </Form><br/>
                             
-                            {post.comments.map((comment, index) => {
+                          {post.comments.map((comment, index) => {
                                 return (
                                 <Alert key={index}><p >{comment}</p></Alert>)
                             })}
                         </Card>
                    </div>)        
-                })}<br/>
+                })}</Label><br/>
                     </Col>
                     <Col>
-                        <Badge color="primary"><h6>events</h6></Badge>
+                    <div>
+                    <Badge color="primary"><h6>events</h6></Badge>
                             {this.state.departmentDetails.department.activities.map((activity, index) => {
                                 return <Link key={index} to="/activities"><li key={index}>{activity.activityName}</li></Link>
                             })}
-                        <Badge color="primary"><h6>members of the department</h6></Badge>
+                    <Badge color="primary"><h6>members of the department</h6></Badge>
                             {
                             this.state.departmentDetails.department.members.map(function(member, index){
                                     return <p key={index}><li key={index}>{member.bio.firstName}</li></p>
                                 })
                             }
+                    </div>  
                     </Col>
                 </Row>
                 
