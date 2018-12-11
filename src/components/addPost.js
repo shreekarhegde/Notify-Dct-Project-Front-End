@@ -30,10 +30,12 @@ class AddPost extends React.Component {
         }
         console.log(submitValue, "value");
         axios.post('http://localhost:3001/posts', submitValue).then((res) => {
-            axios.get(`http://localhost:3001/departments/posts/${this.props.departmentId}`).then(
-                (postsFromDepartments) => {
-                    this.props.addPost(postsFromDepartments.data);
-                })
+            console.log(res.data);
+            this.props.addPost(res.data);
+            // axios.get(`http://localhost:3001/departments/posts/${this.props.departmentId}`).then(
+            //     (postsFromDepartments) => {
+            //         this.props.addPost(postsFromDepartments.data);
+            //     })
             // this.props.addPost(res.data); this doesnot work because res is an object and we need array in departmentDetails to update the posts 
         })
     }

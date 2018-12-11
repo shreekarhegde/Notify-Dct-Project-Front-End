@@ -65,9 +65,9 @@ class DepartmentDetails extends React.Component {
     }
 
         handleAddPost(posts) {
-            console.log(posts, "post")
+            this.state.posts.unshift(posts)
                 this.setState({
-                    posts: posts  
+                    posts: this.state.posts
                 })
         }
 
