@@ -53,11 +53,13 @@ class EmployeeDetails extends React.Component {
                         return <Link key={index} to="/activities"><li key={index}>{activity.activityName}</li></Link>
                     })}<br/>
 
+
                     <Link to={{pathname:`/employees/edit/${this.props.match.params.id}`, state:{employeeDetails: this.state.employeeDetails, departments: this.state.departments}}}>Edit</Link><br/><br/>
 
                     <Link to={`/employees/${this.props.match.params.id}`} onClick={this.deleteHandle}>Delete</Link><br/>
                 
                     <Link to="/employees">back</Link>
+
                 </div>
             ) 
         // }       

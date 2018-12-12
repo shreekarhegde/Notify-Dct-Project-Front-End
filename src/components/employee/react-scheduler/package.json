@@ -1,0 +1,17 @@
+{
+  "name": "react-scheduler",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "daypilot-pro-react": "https://npm.daypilot.org/daypilot-pro-react/trial/2018.2.3285.tar.gz",
+    "react": "^16.3.2",
+    "react-dom": "^16.3.2",
+    "react-scripts": "1.1.4"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  }
+}
