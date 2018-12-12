@@ -19,7 +19,7 @@ const Index = () => (<h2> Home </h2>);
 const AppRouter = () => (
   <Router>
     <div className="container">
-     <Navbar fixed>
+     <Navbar>
           <Link to="/">Home</Link>
           <Link to="/departments/"> Departments</Link>
           <Link to="/employees/"> Employees </Link>

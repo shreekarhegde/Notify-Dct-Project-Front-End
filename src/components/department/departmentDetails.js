@@ -117,28 +117,30 @@ class DepartmentDetails extends React.Component {
                    </div>)        
                 })}</Label><br/>
                     </Col>
-                    <Col>
+                    <Col className="events">
                     <div>
                     <Badge color="primary"><h6>events</h6></Badge>
-                            {this.state.departmentDetails.department.activities.map((activity, index) => {
-                                return <Link key={index} to="/activities"><li key={index}>{activity.activityName}</li></Link>
-                            })}
+                        {this.state.departmentDetails.department.activities.map((activity, index) => {
+                            return <Link key={index} to="/activities"><li key={index}>{activity.activityName}</li></Link>
+                        })}
                     <Badge color="primary"><h6>members of the department</h6></Badge>
-                            {
-                            this.state.departmentDetails.department.members.map(function(member, index){
-                                    return <p key={index}><li key={index}>{member.bio.firstName}</li></p>
-                                })
-                            }
+                        {
+                        this.state.departmentDetails.department.members.map(function(member, index){
+                                return <p key={index}><li key={index}>{member.bio.firstName}</li></p>
+                            })
+                        }
                     </div>  
                     </Col>
                 </Row>
-                
-               
-
+                <Row className="edit">
                 <Link to={{pathname:`/departments/edit/${this.props.match.params.id}`, state:{departments: this.state.departmentDetails, posts: this.state.posts}}}>Edit</Link><br/>  
-
+                </Row>  
+                <Row>
                 <Link to={`/departments/${this.props.match.params.id}`} onClick={this.deleteHandle}>Delete</Link><br/>
+                </Row>
+                <Row>
                 <Link to="/departments">back</Link>
+                </Row>
             </div>
         )
     }
