@@ -17,6 +17,8 @@
     "react-scripts": "2.1.1",
     "react-scroll": "^1.7.10",
     "reactstrap": "^6.5.0",
+    "socket.io": "^2.2.0",
+    "socket.io-client": "^2.2.0",
     "strftime": "^0.10.0"
   },
   "scripts": {

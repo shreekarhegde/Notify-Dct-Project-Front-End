@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import { Link, Redirect } from 'react-router-dom';
+import Chat from './chat';
 
 class EmployeeDetails extends React.Component {
     constructor(props){
@@ -53,6 +54,7 @@ class EmployeeDetails extends React.Component {
                         return <Link key={index} to="/activities"><li key={index}>{activity.activityName}</li></Link>
                     })}<br/>
 
+                    <Chat/>
 
                     <Link to={{pathname:`/employees/edit/${this.props.match.params.id}`, state:{employeeDetails: this.state.employeeDetails, departments: this.state.departments}}}>Edit</Link><br/><br/>
 
