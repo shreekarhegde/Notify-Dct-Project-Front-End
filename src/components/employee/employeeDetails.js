@@ -2,6 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import { Link, Redirect } from 'react-router-dom';
 import Chat from './chat';
+import MyCalendar from './employeeCalendar';
 
 class EmployeeDetails extends React.Component {
     constructor(props){
@@ -53,6 +54,8 @@ class EmployeeDetails extends React.Component {
                     { this.state.employeeDetails.activities.map((activity, index) => {
                         return <Link key={index} to="/activities"><li key={index}>{activity.activityName}</li></Link>
                     })}<br/>
+
+                    <MyCalendar activities={this.state.employeeDetails.activities}/>
 
                     <Chat/>
 
