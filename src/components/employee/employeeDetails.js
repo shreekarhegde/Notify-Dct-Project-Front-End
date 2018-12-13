@@ -78,7 +78,7 @@ class EmployeeDetails extends React.Component {
                     </Container>
                     <Row>
                         <Col sm="12" md={{ size: 7, offset: 4 }} className="row justify-content-md-center">
-                            <Chat/>
+                            <Chat employeeName={this.state.employeeDetails.bio.firstName}/>
                         </Col>  
                    </Row><br/> 
                     
