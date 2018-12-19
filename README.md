@@ -18,6 +18,11 @@ This document provides an overview of different dependencies and packages used i
 File List
 ___________
 1. app
-      controllers
-      Middlewares
-      Models
+   - controllers
+   - middlewares
+   - models
+2. config
+   - db.js
+   - routes.js
+3. node_modules
+4. index.js 
