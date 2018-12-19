@@ -29,7 +29,7 @@ This project enables the user to create departments, add employees to that depar
 - employee
   - See the list of employees, to see more about each employee click on the profile.
 - addEmployee
-  Create an employee with the required details.
+  - Create an employee with the required details.
 - editEmployee
   - Change the details and update.
 - employeeDetails
@@ -49,7 +49,7 @@ This project enables the user to create departments, add employees to that depar
   - This component can be reused where ever the posting is required. Comments and applause buttons get attached to it     automatically whenever new post is created.
 # Authors
 1. [Shreekar Hegde](https://github.com/shreekarhegde) 
-2. [Libin K]
+2. Libin K
 
 
 
