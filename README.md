@@ -18,9 +18,7 @@ This document provides an overview of different dependencies and packages used i
 # File List
 1. node_modules
 2. public
-3. src
-   -components
-      -activity
+3. src                                                                                                                                 -components                                                                                                                      -activity
       -department
       -employee
    -App.js
