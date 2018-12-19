@@ -17,3 +17,7 @@ This document provides an overview of different dependencies and packages used i
 
 File List
 ___________
+1. app
+      controllers
+      Middlewares
+      Models
