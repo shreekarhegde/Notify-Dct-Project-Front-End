@@ -16,7 +16,6 @@ This document provides an overview of different dependencies and packages used i
 12.strftime
 
 # File List
-___________
 1. app
    - controllers
    - middlewares
