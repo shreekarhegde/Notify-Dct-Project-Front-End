@@ -18,11 +18,10 @@ This document provides an overview of different dependencies and packages used i
 # File List
 1. node_modules
 2. public
-3. src                                                                                                                                 -components                                                                                                                      -activity
-      -department
-      -employee
-   -App.js
-   -index.js
+3. src
+      - components
+      - App.js
+      - index.js
 # Authors
 1. Shreekar Hegde
 2. Libin K
