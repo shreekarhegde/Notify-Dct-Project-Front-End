@@ -16,7 +16,7 @@ This project enables the user to create departments, add employees to that depar
 # Usage
  ## `create, edit and delete department`
 - department
-See the list of departments, to see more about each department click on visit this department.
+  - See the list of departments, to see more about each department click on visit this department.
 - addDepartment
   - Create a new department, write descriptions about it, add members.
 - editDepartment
@@ -35,21 +35,21 @@ See the list of departments, to see more about each department click on visit th
 - employeeDetails
   - View the profile, see the calendar, chat globally
 - delete
-  Delete account.
+  - Delete account.
 ## `create, update and delete activity`
 - activity
   - See the list of activities
 - addActivity
-  create a new activity/event, add/invite participants, add the details such as venue, date and time and guests.
+  - Create a new activity/event, add/invite participants, add the details such as venue, date and time and guests.
 - editActivity
-  - change the details and update.
+  - Change the details and update.
 - delete
   - Delete the activity and remove the same form departments and employees who would have been added to it.
 ## `add post`
   - This component can be reused where ever the posting is required. Comments and applause buttons get attached to it     automatically whenever new post is created.
 # Authors
-1. Shreekar Hegde
-2. Libin K
+1. [Shreekar Hegde](https://github.com/shreekarhegde) 
+2. [Libin K]
 
 
 
