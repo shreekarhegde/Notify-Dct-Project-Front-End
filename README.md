@@ -15,7 +15,5 @@ This document provides an overview of different dependencies and packages used i
 11.socket.io-client
 12.strftime
 
-# Folder structure
-eit
-| README.md
-|
+File List
+___________
