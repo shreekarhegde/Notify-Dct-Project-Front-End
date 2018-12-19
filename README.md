@@ -15,7 +15,7 @@ This document provides an overview of different dependencies and packages used i
 11.socket.io-client
 12.strftime
 
-File List
+# File List
 ___________
 1. app
    - controllers
@@ -26,3 +26,10 @@ ___________
    - routes.js
 3. node_modules
 4. index.js 
+
+# Authors
+1. Shreekar Hegde
+2. Libin K
+
+
+
