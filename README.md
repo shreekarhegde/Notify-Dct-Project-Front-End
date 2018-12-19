@@ -13,7 +13,8 @@ This project enables the user to create departments, add employees to that depar
 9. socket.io (npm i socket.io)
 10. socket.io-client (npm i socket.io-client)
 11. strftime (npm i strftime)
- # `create, edit and delete department`
+# Usage
+ ## `create, edit and delete department`
 - department
 See the list of departments, to see more about each department click on visit this department.
 - addDepartment
@@ -24,7 +25,7 @@ See the list of departments, to see more about each department click on visit th
   - View the details of a particular department, its members, events conducted by that department etc.
 - delete
   - Delete the department
-# `create, edit and delete employees`
+## `create, edit and delete employees`
 - employee
   - See the list of employees, to see more about each employee click on the profile.
 - addEmployee
@@ -35,7 +36,7 @@ See the list of departments, to see more about each department click on visit th
   - View the profile, see the calendar, chat globally
 - delete
   Delete account.
-# `create, update and delete activity`
+## `create, update and delete activity`
 - activity
   - See the list of activities
 - addActivity
@@ -44,7 +45,7 @@ See the list of departments, to see more about each department click on visit th
   - change the details and update.
 - delete
   - Delete the activity and remove the same form departments and employees who would have been added to it.
-# `add post`
+## `add post`
   - This component can be reused where ever the posting is required. Comments and applause buttons get attached to it     automatically whenever new post is created.
 # Authors
 1. Shreekar Hegde
