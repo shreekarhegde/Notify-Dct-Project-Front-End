@@ -136,7 +136,10 @@ class EditActivity extends React.Component {
             this.state.departmentsToBeRemoved.push(event.target.value);
     }
     handleGuests(event){
-        this.state.guests.push(event.target.value)
+        event.preventDefault();
+        this.setState({
+            guests: event.target.value
+        })
     }
 
     handleSubmit(event){
