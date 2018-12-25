@@ -15,11 +15,13 @@ class AddEmployee extends React.Component {
             bio: '',
             redirect: false,
             departments: this.props.location.state.departments,
+            email: ``
         }
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleChangeFirstName = this.handleChangeFirstName.bind(this);
         this.handleChangeLastName = this.handleChangeLastName.bind(this);
         this.handleChangeDepartment = this.handleChangeDepartment.bind(this);
+        this.handleChangeEmail = this.handleChangeEmail.bind(this);
     }
 
     validate = () => {
@@ -73,6 +75,13 @@ class AddEmployee extends React.Component {
         })
     }
 
+    handleChangeEmail(event){
+        event.preventDefault();
+        this.setState({
+            email: event.target.value
+        })
+    }
+
     handleSubmit(event){
         event.preventDefault();
         const err = this.validate();
@@ -86,7 +95,8 @@ class AddEmployee extends React.Component {
                 bio: {
                     firstName: this.state.firstNameOfEmployee,
                     lastName: this.state.lastNameOfEmployee,
-                    department: this.state.departmentofEmployee
+                    department: this.state.departmentofEmployee,
+                    email: this.state.email
                 }
             }
             axios.post('http://localhost:3001/employees', submitValue).then((response) => {
@@ -115,6 +125,10 @@ class AddEmployee extends React.Component {
                         Last Name<br/>
                         <input type="text" name="lastName" errortext={this.state.lastNameError} onChange={this.handleChangeLastName} value={this.state.lastNameOfEmployee}/><br/>
                     </label><span>{this.state.lastNameError}</span>
+                    <label>
+                        Email: <br/>
+                        <input type="email" name="email" onChange={this.handleChangeEmail} value={this.state.email} />
+                    </label>
                     <label>
                         <div>
                             <select errortext={this.state.departmentError} onClick={this.handleChangeDepartment}>{

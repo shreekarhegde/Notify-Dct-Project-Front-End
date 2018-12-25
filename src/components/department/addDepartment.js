@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import {Redirect, Link} from 'react-router-dom';
-import { Button, Form, FormGroup, Label, Input, FormText, Alert } from 'reactstrap';
+import { Button, Form, FormGroup, Label, Input, Alert } from 'reactstrap';
 
 
 class AddDepartment extends React.Component {
